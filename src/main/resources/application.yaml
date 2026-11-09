@@ -24,8 +24,21 @@ spring:
     locations:
       - classpath:db/migration
 
+  # --- Configuration Spring Security Resource Server ---
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: ${KEYCLOAK_ISSUER_URI}
+          jwk-set-uri: ${KEYCLOAK_ISSUER_URI}/protocol/openid-connect/certs
+
 server:
-  port: 8080
+       jwt:
+         issuer-uri: ${KEYCLOAK_ISSUER_URI}
+         jwk-set-uri: http://localhost:8080/realms/helpdesk-realm/protocol/openid-connect/certs
+
+server:
+  port: 8090
 
 management:
   endpoints:
